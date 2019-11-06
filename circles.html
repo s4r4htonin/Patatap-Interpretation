@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Circles</title>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script type="text/javascript" src="assets/js/lib/paper-full.js"></script>
+    <script type="text/paperscript" canvas="myCanvas">
+
+        var cirArr = [];
+
+        function onKeyDown(event) {
+            cirArr.push(new Path.Circle({
+                center: generateRandomPoint(),
+                radius: 500,
+                fillColor: "red"
+                }));
+        }
+
+        function generateRandomPoint (){
+            var maxPoint = new Point(view.size.width, view.size.height); //finds the max x & y value of the canvas area
+            var randomPoint = Point.random() * maxPoint; //generates a random coordinate within those values
+            return randomPoint;
+        } 
+
+        function onFrame(event) {
+            for (var i = 0; i < cirArr.length; i++){
+                cirArr[i].fillColor.hue += 1;
+                cirArr[i].scale(.9);
+            }
+        } 
+
+    </script>
+</head>
+
+<body>
+    <canvas id="myCanvas" resize></canvas>
+</body>
+
+</html>
