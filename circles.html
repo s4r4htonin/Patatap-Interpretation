@@ -11,7 +11,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.js"></script>
     <script type="text/javascript" src="assets/js/lib/paper-full.js"></script>
     <script type="text/paperscript" canvas="myCanvas">
-
+        
         var keyData = {
             a: {
                 color: "purple",
@@ -174,15 +174,14 @@
         var cirArr = [];
 
         function onKeyDown(event) {
-            if (keyData[event.key] === undefined){ //alert the user to press a valid key if an unbound one is pressed
-                return alert("Press a valid key (A - Z)");
-            }
+            if (keyData[event.key]){
             keyData[event.key].sound.play(); //play the sound bound to the pressed key
             cirArr.push(new Path.Circle({ //make a new circle in a random location
                 center: generateRandomPoint(),
                 radius: 500,
                 fillColor: keyData[event.key].color //set the fill color to the color bound to the pressed key
                 }));
+            }
         }
 
         function generateRandomPoint (){ //generate a point in a random location on the canvas
@@ -201,7 +200,7 @@
                 }
             }
         } 
-        
+
     </script>
 </head>
 <body>
